@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function App() {
+import Products from './src/screens/Products';
+import ShoppingCart from './src/screens/ShoppingCart';
+
+const Stack = createStackNavigator();
+
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="products" component={Products} options={{ title: 'Products' }} />
+          <Stack.Screen name="shopping-cart" component={ShoppingCart} options={{ title: 'Shopping Cart' }} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
