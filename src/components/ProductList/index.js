@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { applyTo, pipe } from 'ramda';
 
-export default function App() {
+export default applyTo(() => {
   return (
     <View style={styles.container}>
       <Text>Product List</Text>
     </View>
   );
-}
+}, pipe(
+  memo,
+));
 
 const styles = StyleSheet.create({
   container: {

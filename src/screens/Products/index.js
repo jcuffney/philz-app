@@ -1,9 +1,10 @@
 import React, { memo, useCallback } from 'react';
 import { StyleSheet, View, Button } from 'react-native';
+import { applyTo, pipe } from 'ramda';
 
 import ProductList from '../../components/ProductList';
 
-export default ({
+export default applyTo(({
   navigation,
 }) => {
 
@@ -14,10 +15,12 @@ export default ({
   return (
     <View style={styles.container}>
       <ProductList />
-      <Button title='View Cart' onPress={ handlePress } />
+      <Button title='View Cart' onPress={ handlePress } style={ styles.btn } />
     </View>
   );
-}
+}, pipe(
+  memo,
+));
 
 const styles = StyleSheet.create({
   container: {
@@ -26,4 +29,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  btn: {
+    flex: 1,
+    backgroundColor: '#000',
+    color: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });

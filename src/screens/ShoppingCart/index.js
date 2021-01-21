@@ -1,9 +1,10 @@
 import React, { memo, useCallback } from 'react';
 import { StyleSheet, Button, View } from 'react-native';
+import { applyTo, pipe } from 'ramda';
 
 import ProductList from '../../components/ProductList';
 
-export default ({
+export default applyTo(({
   navigation,
 }) => {
 
@@ -17,7 +18,9 @@ export default ({
       <Button title='Checkout' onPress={ handlePress } />
     </View>
   );
-}
+}, pipe(
+  memo,
+));
 
 const styles = StyleSheet.create({
   container: {
