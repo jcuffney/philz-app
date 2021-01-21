@@ -4,7 +4,6 @@ import { applyTo, pipe } from 'ramda';
 
 import ProductList from '../../components/ProductList';
 import Button from '../../components/Button';
-import { ScrollView } from 'react-native-gesture-handler';
 
 export default applyTo(({
   navigation,
@@ -16,9 +15,7 @@ export default applyTo(({
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <ProductList />
-      </ScrollView>
+      <ProductList />
       <Button title='Checkout' onPress={ handlePress } />
     </View>
   );

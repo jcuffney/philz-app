@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { applyTo, pipe } from 'ramda';
 
 import ProductList from '../../components/ProductList';
@@ -15,9 +15,7 @@ export default applyTo(({
 
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <ProductList />
-      </ScrollView>
+      <ProductList />
       <Button onPress={ handlePress } title='View Cart' />
     </View>
   );
