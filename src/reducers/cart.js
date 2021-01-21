@@ -44,14 +44,15 @@ export default (state = [], action) => {
             // decrement case
             } else if (type == '--') { 
                 const newQuantity = applyTo(cartItem, pipe(prop('quantity'), dec));
+                console.log('new q', newQuantity)
                 // if `quantity` is decremented to 0; remove it from the cart.
-                if (newQuantity === 0) remove(itemIdx, inc(itemIdx), state);
+                if (newQuantity === 0) return remove(itemIdx, inc(itemIdx), state);
 
                 // otherwise just decrement the quantity
                 const updatedCartItem = assoc('quantity', newQuantity, cartItem);
                 return update(itemIdx, updatedCartItem, state);
             }
-            
+
             // this should never actually get hit...but is a catch all.
             // if this were real i'd likely log something here to note the issue.
             return state;
