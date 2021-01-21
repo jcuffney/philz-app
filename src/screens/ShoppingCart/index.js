@@ -5,15 +5,18 @@ import { connect } from 'react-redux';
 
 import ProductList from '../../components/ProductList';
 import Button from '../../components/Button';
+import { clearCart } from '../../actions/cart';
 
 export default applyTo(({
   navigation,
   items,
+  clearCart,
 }) => {
 
   const handlePress = useCallback(() => {
-    navigation.navigate('products')
-  }, [navigation]);
+    clearCart();
+    navigation.navigate('products');
+  }, [navigation, clearCart]);
 
   return (
     <View style={styles.container}>
@@ -22,7 +25,7 @@ export default applyTo(({
     </View>
   );
 }, pipe(
-  connect(state => ({ items: pathOr([], ['cart'], state)})),
+  connect(state => ({ items: pathOr([], ['cart'], state)}), { clearCart }),
   memo,
 ));
 
