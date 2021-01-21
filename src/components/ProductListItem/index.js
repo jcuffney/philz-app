@@ -12,17 +12,17 @@ export default applyTo(({
   item,
   idx,
   addToCart,
+  addToCartDisabled,
 }) => {
   const handlePress = useCallback(() => addToCart(item), [addToCart, item]);
 
-  const container = {
-    ...styles.container,
-    backgroundColor: isOdd(idx) ? '#CDCDCD' : '#fff', 
-  }
   return (
-    <View style={ container }>
+    <View style={{
+      ...styles.container,
+      backgroundColor: isOdd(idx) ? '#CDCDCD' : '#fff', 
+    }}>
       <Text>{ propOr('', 'title', item) }</Text>
-      <Button title='Add To Cart' onPress={ handlePress } />
+      { !addToCartDisabled && <Button title='Add To Cart' onPress={ handlePress } /> }
     </View>
   );
 }, pipe(

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { applyTo, pipe, pathOr } from 'ramda';
 import { connect } from 'react-redux';
 
@@ -19,8 +19,17 @@ export default applyTo(({
   }, [navigation, clearCart]);
 
   return (
-    <View style={styles.container}>
-      <ProductList data={ items } />
+    <View style={{
+      ...styles.container,
+      ...(items.length === 0 ? {
+        alignItems: 'center',
+        justifyContent: 'center',
+      } : {}),
+    }}>
+      { items.length === 0
+        ? <Text>No Items in the Cart</Text>
+        : <ProductList data={ items } addToCartDisabled={ true } />
+      }
       <Button title='Checkout' onPress={ handlePress } />
     </View>
   );

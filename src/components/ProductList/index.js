@@ -6,9 +6,11 @@ import ProductListItem from '../ProductListItem';
 
 export default applyTo(({
   data,
+  addToCartDisabled,
 }) => {
 
-  const renderItem = ({ item, index }) => <ProductListItem item={item} idx={ index } />;
+  const renderItem = ({ item, index }) =>
+    <ProductListItem item={item} idx={ index } addToCartDisabled={ addToCartDisabled || false } />;
 
   return (
     <FlatList

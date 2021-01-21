@@ -46,8 +46,9 @@ export default applyTo(({
   // but it will provide a visual indication that a item was added to the cart.
   // which is all I'm going for here :)
   const productsNotInCart = filter(({ id }) => {
-    !find(propEq('id', id), cartItems) && true;
+    return !find(propEq('id', id), cartItems) && true;
   }, PRODUCTS);
+  console.log(productsNotInCart)
 
   return (
     <View style={styles.container}>
