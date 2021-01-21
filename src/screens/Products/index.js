@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import ProductList from '../../components/ProductList';
 import Button from '../../components/Button';
 
+// assuming quantity is a cart value; and has nothing to do with inventory
 const PRODUCTS = [
   {
     id: '1',
@@ -48,7 +49,6 @@ export default applyTo(({
   const productsNotInCart = filter(({ id }) => {
     return !find(propEq('id', id), cartItems) && true;
   }, PRODUCTS);
-  console.log(productsNotInCart)
 
   return (
     <View style={styles.container}>

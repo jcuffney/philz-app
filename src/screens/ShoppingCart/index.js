@@ -28,7 +28,7 @@ export default applyTo(({
     }}>
       { items.length === 0
         ? <Text>No Items in the Cart</Text>
-        : <ProductList data={ items } addToCartDisabled={ true } />
+        : <ProductList data={ items } isCart={ true } />
       }
       <Button title='Checkout' onPress={ handlePress } />
     </View>

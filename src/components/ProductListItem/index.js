@@ -12,7 +12,6 @@ export default applyTo(({
   item,
   idx,
   addToCart,
-  addToCartDisabled,
 }) => {
   const handlePress = useCallback(() => addToCart(item), [addToCart, item]);
 
@@ -22,7 +21,7 @@ export default applyTo(({
       backgroundColor: isOdd(idx) ? '#CDCDCD' : '#fff', 
     }}>
       <Text>{ propOr('', 'title', item) }</Text>
-      { !addToCartDisabled && <Button title='Add To Cart' onPress={ handlePress } /> }
+      <Button title='Add To Cart' onPress={ handlePress } />
     </View>
   );
 }, pipe(

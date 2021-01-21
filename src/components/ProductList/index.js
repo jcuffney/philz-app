@@ -3,14 +3,17 @@ import { FlatList } from 'react-native';
 import { applyTo, pipe } from 'ramda';
 
 import ProductListItem from '../ProductListItem';
+import CartListItem from '../CartListItem';
 
 export default applyTo(({
   data,
-  addToCartDisabled,
+  isCart = false,
 }) => {
 
   const renderItem = ({ item, index }) =>
-    <ProductListItem item={item} idx={ index } addToCartDisabled={ addToCartDisabled || false } />;
+    isCart
+      ? <CartListItem item={item} idx={ index } />
+      : <ProductListItem item={item} idx={ index } />;
 
   return (
     <FlatList
