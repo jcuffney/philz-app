@@ -1,12 +1,14 @@
 import React, { memo, useCallback } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { applyTo, pipe } from 'ramda';
+import { applyTo, pipe, pathOr } from 'ramda';
+import { connect } from 'react-redux';
 
 import ProductList from '../../components/ProductList';
 import Button from '../../components/Button';
 
 export default applyTo(({
   navigation,
+  items,
 }) => {
 
   const handlePress = useCallback(() => {
@@ -15,11 +17,12 @@ export default applyTo(({
 
   return (
     <View style={styles.container}>
-      <ProductList />
+      <ProductList data={ items } />
       <Button title='Checkout' onPress={ handlePress } />
     </View>
   );
 }, pipe(
+  connect(state => ({ items: pathOr([], ['cart'], state)})),
   memo,
 ));
 

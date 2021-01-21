@@ -1,16 +1,20 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { applyTo, pipe, propOr, identity } from 'ramda';
+import { applyTo, pipe, propOr } from 'ramda';
+import { connect } from 'react-redux';
+
+import { addToCart } from '../../actions/cart';
 
 // abstract pure functions so they are easier to add to libs later
 const isOdd = idx => idx % 2 === 1;
 
-
 export default applyTo(({
   item,
   idx,
+  addToCart,
 }) => {
-  // only apply g
+  const handlePress = useCallback(() => addToCart(item), [addToCart, item]);
+
   const container = {
     ...styles.container,
     backgroundColor: isOdd(idx) ? '#CDCDCD' : '#fff', 
@@ -18,10 +22,11 @@ export default applyTo(({
   return (
     <View style={ container }>
       <Text>{ propOr('', 'title', item) }</Text>
-      <Button title='Add To Cart' />
+      <Button title='Add To Cart' onPress={ handlePress } />
     </View>
   );
 }, pipe(
+  connect(null, { addToCart }),
   memo,
 ));
 

@@ -5,6 +5,21 @@ import { applyTo, pipe } from 'ramda';
 import ProductList from '../../components/ProductList';
 import Button from '../../components/Button';
 
+const PRODUCTS = [
+  {
+    id: '1',
+    title: 'Product 1',
+  },
+  {
+    id: '2',
+    title: 'Product 2',
+  },
+  {
+    id: '3',
+    title: 'Product 3',
+  },
+];
+
 export default applyTo(({
   navigation,
 }) => {
@@ -15,7 +30,7 @@ export default applyTo(({
 
   return (
     <View style={styles.container}>
-      <ProductList />
+      <ProductList data={ PRODUCTS } />
       <Button onPress={ handlePress } title='View Cart' />
     </View>
   );
