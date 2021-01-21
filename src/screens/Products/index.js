@@ -1,8 +1,9 @@
 import React, { memo, useCallback } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import { applyTo, pipe } from 'ramda';
 
 import ProductList from '../../components/ProductList';
+import Button from '../../components/Button';
 
 export default applyTo(({
   navigation,
@@ -14,8 +15,10 @@ export default applyTo(({
 
   return (
     <View style={styles.container}>
-      <ProductList />
-      <Button title='View Cart' onPress={ handlePress } style={ styles.btn } />
+      <ScrollView>
+        <ProductList />
+      </ScrollView>
+      <Button onPress={ handlePress } title='View Cart' />
     </View>
   );
 }, pipe(
@@ -26,14 +29,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  btn: {
-    flex: 1,
-    backgroundColor: '#000',
-    color: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
 });
